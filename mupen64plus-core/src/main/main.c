@@ -611,6 +611,8 @@ m64p_error main_core_state_set(m64p_core_param param, int val)
 m64p_error main_get_screen_size(int *width, int *height)
 {
     gfx.readScreen(NULL, width, height, 0);
+    native_core_video_height = height;
+    native_core_video_width = width;
     return M64ERR_SUCCESS;
 }
 
