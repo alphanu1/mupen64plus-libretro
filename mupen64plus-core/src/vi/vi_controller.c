@@ -32,6 +32,8 @@
 /* XXX: timing hacks */
 enum { NTSC_VERTICAL_RESOLUTION = 525 };
 
+float native_refresh = 0.0f;
+
 unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
 {
     switch(tv_standard)
@@ -52,10 +54,12 @@ unsigned int vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_stand
     {
     case SYSTEM_PAL:
     case SYSTEM_MPAL:
+        native_refresh = 0;
         return 50;
 
     case SYSTEM_NTSC:
     default:
+        native_refresh = 0;
         return 60;
     }
 }
