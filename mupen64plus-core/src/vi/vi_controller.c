@@ -54,12 +54,12 @@ unsigned int vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_stand
     {
     case SYSTEM_PAL:
     case SYSTEM_MPAL:
-        native_refresh = 0;
+        native_refresh = 48.920000;
         return 50;
 
     case SYSTEM_NTSC:
     default:
-        native_refresh = 0;
+        native_refresh = 59.940000;
         return 60;
     }
 }
