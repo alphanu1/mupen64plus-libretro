@@ -68,7 +68,8 @@ static uint32_t vi_reg(uint32_t address)
 
 
 unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard);
-unsigned float vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_standard);
+float vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_standard);
+unsigned vi_get_current_native_size(char xy);
 
 void init_vi(struct vi_controller* vi, unsigned int clock, float expected_refresh_rate,
              unsigned int count_per_scanline, unsigned int alternate_timing,
