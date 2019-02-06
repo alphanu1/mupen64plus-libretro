@@ -33,6 +33,8 @@
 enum { NTSC_VERTICAL_RESOLUTION = 525 };
 
 float native_refresh = 0.0f;
+int native_height = 0;
+int native_width = 0;
 
 unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
 {
@@ -66,13 +68,12 @@ float vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_standard)
 unsigned vi_get_current_native_size(char xy)
 {
     int size;
-    struct vi_controller* vi;
     
-    if (xy == x)
-        size = vi->regs[VI_HEIGHT_REG];
+    if (xy == "y")
+        size = native_height;
     
-    if (xy == x)
-        size = vi->regs[VI_WIDTH_REG];
+    if (xy == "x")
+        size = native_width;
      
     return size;
 }
@@ -114,7 +115,7 @@ int read_vi_regs(void* opaque, uint32_t address, uint32_t* value)
         /* update current field */
         vi->regs[VI_CURRENT_REG] = (vi->regs[VI_CURRENT_REG] & (~1)) | vi->field;
     }
-
+    native_height = vi->count_per_scanline;
     *value = vi->regs[reg];
 
     return 0;
@@ -138,6 +139,7 @@ int write_vi_regs(void* opaque, uint32_t address, uint32_t value, uint32_t mask)
     case VI_WIDTH_REG:
         if ((vi->regs[VI_WIDTH_REG] & mask) != (value & mask))
         {
+            native_width = &vi->regs[VI_WIDTH_REG];
             masked_write(&vi->regs[VI_WIDTH_REG], value, mask);
             gfx.viWidthChanged();
         }
