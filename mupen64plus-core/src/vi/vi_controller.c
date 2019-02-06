@@ -48,19 +48,18 @@ unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
     }
 }
 
-unsigned int vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_standard)
+unsigned float vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_standard)
 {
     switch (tv_standard)
     {
     case SYSTEM_PAL:
     case SYSTEM_MPAL:
-        native_refresh = 48.920000;
-        return 50;
+        return 48.920000;
 
     case SYSTEM_NTSC:
     default:
-        native_refresh = 59.940000;
-        return 60;
+        return 59.940000;
+      
     }
 }
 
