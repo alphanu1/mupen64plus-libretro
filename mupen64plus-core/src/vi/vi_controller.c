@@ -48,7 +48,7 @@ unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
     }
 }
 
-unsigned float vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_standard)
+float vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_standard)
 {
     switch (tv_standard)
     {
@@ -61,6 +61,20 @@ unsigned float vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_sta
         return 59.940000;
       
     }
+}
+
+unsigned vi_get_current_native_size(char xy)
+{
+    int size;
+    struct vi_controller* vi;
+    
+    if (xy == x)
+        size = vi->regs[VI_HEIGHT_REG];
+    
+    if (xy == x)
+        size = vi->regs[VI_WIDTH_REG];
+     
+    return size;
 }
 
 void init_vi(struct vi_controller* vi, unsigned int clock, float expected_refresh_rate,
