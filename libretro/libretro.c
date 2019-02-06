@@ -30,6 +30,7 @@
 #include "pi/pi_controller.h"
 #include "si/pif.h"
 #include "libretro_memory.h"
+#include "vi/vi_controller.h"
 
 #include "audio_plugin.h"
 
