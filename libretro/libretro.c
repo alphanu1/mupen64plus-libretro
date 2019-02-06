@@ -81,8 +81,8 @@ static unsigned retro_filtering     = 0;
 static bool     first_context_reset = false;
 static bool     initializing        = true;
 
-uint32_t retro_screen_width = 320;
-uint32_t retro_screen_height = 240;
+uint32_t retro_screen_width = get_retro_screen_width();
+uint32_t retro_screen_height = get_retro_screen_height();
 float retro_screen_aspect = 4.0 / 3.0;
 
 uint32_t bilinearMode = 0;
@@ -1079,12 +1079,14 @@ void retro_return(void)
 
 uint32_t get_retro_screen_width()
 {
-    return retro_screen_width;
+    return vi_get_current_native_size("x")
+    //return retro_screen_width;
 }
 
 uint32_t get_retro_screen_height()
 {
-    return retro_screen_height;
+    return vi_get_current_native_size("y")
+    //return retro_screen_height;
 }
 
 static int GamesharkActive = 0;
