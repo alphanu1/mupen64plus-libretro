@@ -101,7 +101,6 @@ int read_vi_regs(void* opaque, uint32_t address, uint32_t* value)
         /* update current field */
         vi->regs[VI_CURRENT_REG] = (vi->regs[VI_CURRENT_REG] & (~1)) | vi->field;
     }
-    native_height = vi->count_per_scanline;
     *value = vi->regs[reg];
 
     return 0;
@@ -125,7 +124,6 @@ int write_vi_regs(void* opaque, uint32_t address, uint32_t value, uint32_t mask)
     case VI_WIDTH_REG:
         if ((vi->regs[VI_WIDTH_REG] & mask) != (value & mask))
         {
-            native_width = &vi->regs[VI_WIDTH_REG];
             masked_write(&vi->regs[VI_WIDTH_REG], value, mask);
             gfx.viWidthChanged();
         }
