@@ -32,7 +32,8 @@
 /* XXX: timing hacks */
 enum { NTSC_VERTICAL_RESOLUTION = 525 };
 
-float native_refresh = 0.0f;
+unsigned native_height    = 0;
+unsigned native_width     = 0;
 
 unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
 {
@@ -124,6 +125,7 @@ int write_vi_regs(void* opaque, uint32_t address, uint32_t value, uint32_t mask)
     case VI_WIDTH_REG:
         if ((vi->regs[VI_WIDTH_REG] & mask) != (value & mask))
         {
+            native_width = &vi->regs[VI_WIDTH_REG];
             masked_write(&vi->regs[VI_WIDTH_REG], value, mask);
             gfx.viWidthChanged();
         }
@@ -141,6 +143,7 @@ int write_vi_regs(void* opaque, uint32_t address, uint32_t value, uint32_t mask)
 
 void vi_vertical_interrupt_event(struct vi_controller* vi)
 {
+    native_height = vi->count_per_scanline;
     gfx.updateScreen();
 
     /* allow main module to do things on VI event */
