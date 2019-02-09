@@ -33,8 +33,6 @@
 enum { NTSC_VERTICAL_RESOLUTION = 525 };
 
 float native_refresh = 0.0f;
-int native_height = 0;
-int native_width = 0;
 
 unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
 {
@@ -65,18 +63,6 @@ float vi_expected_refresh_rate_from_tv_standard(m64p_system_type tv_standard)
     }
 }
 
-unsigned vi_get_current_native_size(char xy)
-{
-    int size;
-    
-    if (xy == "y")
-        size = native_height;
-    
-    if (xy == "x")
-        size = native_width;
-     
-    return size;
-}
 
 void init_vi(struct vi_controller* vi, unsigned int clock, float expected_refresh_rate,
              unsigned int count_per_scanline, unsigned int alternate_timing,
