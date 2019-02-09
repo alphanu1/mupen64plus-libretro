@@ -1079,14 +1079,14 @@ void retro_return(void)
 
 uint32_t get_retro_screen_width()
 {
-    return VI.rwidth;
+    return native_width;
     //return vi_get_current_native_size("x");
     //return retro_screen_width;
 }
 
 uint32_t get_retro_screen_height()
 {
-    return VI.rheight;
+    return native_height;
     //return vi_get_current_native_size("y");
     //return retro_screen_height;
 }
