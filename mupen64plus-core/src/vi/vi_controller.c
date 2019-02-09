@@ -32,9 +32,6 @@
 /* XXX: timing hacks */
 enum { NTSC_VERTICAL_RESOLUTION = 525 };
 
-unsigned native_height    = 0;
-unsigned native_width     = 0;
-
 unsigned int vi_clock_from_tv_standard(m64p_system_type tv_standard)
 {
     switch(tv_standard)
